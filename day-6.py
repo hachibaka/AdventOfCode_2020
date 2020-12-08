@@ -1,5 +1,5 @@
 from collections import Counter
-
+import time
 
 def part1_countanswers(group_answers):
     num_of_anwers = sum(len(set("".join(group_answer))) for group_answer in group_answers)
@@ -34,6 +34,7 @@ def read_input(filename):
 
 
 if __name__ == '__main__':
+    start_time = time.time()
     group_answers = read_input('day6_sample_input.txt')
     # print(group_answers)
     group_answers = read_input("day6_input.txt")
@@ -41,3 +42,4 @@ if __name__ == '__main__':
     print("part1 answer", part1_ans)
     part2_ans = part2_countallanswers(group_answers)
     print("part2 answer", part2_ans)
+    print("Total time taken is ", (time.time() - start_time)*1000)
