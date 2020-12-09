@@ -8,18 +8,17 @@ def part1_notsumofpreabmle(xmas_data, preamble_size):
 		i += 1
 
 
-def part2_contiguousset(input_values, target):
+def part2_contiguousset(xmas_data, target):
 	i = 0
 	while i < len(input_values):
-		totalsum = 0
-		j = i
-		contiguos_sum = []
-		while totalsum <= target and j < len(input_values):
-			totalsum += input_values[j]
-			contiguos_sum.append(input_values[j])
-			if totalsum == target and len(contiguos_sum) >= 2:
-				return min(contiguos_sum) + max(contiguos_sum)
+		j = i + 1
+		#contiguos_sum = []
+		while sum(xmas_data[i:j+1]) < target and j < len(input_values):
 			j += 1
+
+		if sum(xmas_data[i:j+1]) == target:
+			return min(xmas_data[i:j+1]) + max(xmas_data[i:j+1])
+
 		i += 1
 
 
