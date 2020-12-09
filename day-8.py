@@ -1,16 +1,21 @@
 import copy
+import time
+
 def part1_accumulator(instructions):
 	accumulator = 0
 	seen = set()
 	i = 0
 	validrun = False
+	instructionsexecuted = 0
 	while True:
+		instructionsexecuted += 1
 		if i == len(instructions) -1:  #checking last instructions has been run
 			validrun = True
 
 		if i >= len(instructions) or i < 0:
 			return None, True
 		if i in seen:
+			print(f"instructions executed before exit is {instructionsexecuted}")
 			return accumulator, True
 		else:
 			seen.add(i)
@@ -65,8 +70,12 @@ if __name__ == '__main__':
 'jmp -4',
 'acc +6']
 	input_values = read_input("day8_input.txt")
+	start_time = time.time()
 	part1_ans = part1_accumulator(input_values)
 	print("part1 answer", part1_ans)
+	print(f"time taken for part1 is {time.time() - start_time}")
+	start_time = time.time()
 	part2_ans = part2_breakloop(input_values)
 	print("part2 answer", part2_ans)
+	print(f"time taken for part2 is {time.time() - start_time}")
 
