@@ -1,4 +1,3 @@
-#from itertools import combinations
 from collections import defaultdict
 
 def part1_joltdiff(adapters):
@@ -20,7 +19,7 @@ def _adaptercommbinations(combinations, start, seen={}):
 		return seen[start]
 	totalcombinations = sum(_adaptercommbinations(combinations, i) for i in combinations[start])
 	seen[start] = totalcombinations
-	return totalcombinations
+	return totalcombinations	
 	
 
 def part2_adaptercombinations(adapters):
@@ -57,4 +56,5 @@ if __name__ == '__main__':
 	print("part1 answer", part1_ans)
 	part2_ans = part2_adaptercombinations(input_values)
 	print("part2 answer", part2_ans)
+
 
