@@ -54,11 +54,12 @@ def _simulateseatoccupation2(seatlayout):
 	occupiedseat = copy.deepcopy(seatlayout)
 	i = j = 0
 	seatwidth = len(seatlayout[0])
+	seatlength  = len(seatlayout)
 
 	def _checkadjacentseatsempty(i,j):
 		for y, x in adjacent_nodes:
 			k, l = y, x 
-			while 0 <= i+k < len(seatlayout) and 0 <= j+l < len(seatlayout[0]):
+			while 0 <= i+k < seatlength and 0 <= j+l < seatwidth:
 				if seatlayout[i+k][j+l] == '#':
 					return False
 				elif seatlayout[i+k][j+l] == 'L':
@@ -67,7 +68,7 @@ def _simulateseatoccupation2(seatlayout):
 				l += x
 		return True
 		
-	for i in range(len(seatlayout)):
+	for i in range(seatlength):
 		for j in range(seatwidth):
 			if occupiedseat[i][j] == 'L' and _checkadjacentseatsempty(i,j):
 				occupiedseat[i][j] = '#'
@@ -166,12 +167,6 @@ if __name__ == '__main__':
 				'L.LLLLL.LL']
 	input_values = [list(x) for x in input_values_sample]
 	input_values = read_input("day11_input.txt")
-	start_time = time.time()
-	for _ in range(100):
-		sum(1 for sublayout in input_values for seat in sublayout)
-		new_layout = copy.deepcopy(input_values)
-
-	print(f"total time taken is {time.time() - start_time}")
 	start_time = time.time()
 	part1_ans = part1_cacl_occupied_seats(input_values)
 	print("part1 answer", part1_ans)
